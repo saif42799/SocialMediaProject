@@ -1,0 +1,1 @@
+The image shown in this folder represents the overview of how we set up out database

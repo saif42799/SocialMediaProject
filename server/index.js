@@ -10,6 +10,9 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import { error } from "console";
+import { register } from "module";
+import authRoutes from ".routes/auth.js";
+import { register } from "./controllers/auth.js";
 
 // CONFIGURATIONS (Contains all the middle wear configurations), Middleware - basically functions that run in between different things
 
@@ -40,6 +43,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage }); // this is how we upload files 
 
+// ROUTES WITH FILES
+app.post("/auth/register", upload.single("picture"), register); 
+
+// Routes 
+app.use("/auth", authRoutes);
+
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 6001; // this is a back up port
 mongoose.connect(process.env.MONGO_URL, {  // <- connect to database from node server
@@ -49,3 +58,6 @@ mongoose.connect(process.env.MONGO_URL, {  // <- connect to database from node s
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect`))
 
+
+ // authentication - when we register and login
+ // athorization - makes sure someone is logged in so you can perform certain actions
