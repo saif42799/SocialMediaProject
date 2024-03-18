@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import Jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 // REGFISTER USER
@@ -57,4 +57,4 @@ export const login = async (req, res) => {
     catch(err){
         res.status(500).json({error: err.message});
     }
-}
+};

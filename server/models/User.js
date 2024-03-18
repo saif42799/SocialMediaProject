@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true,
             max: 50,
-            unique: true
+            unique: true,
         },
         password: {
             type: String,
@@ -32,14 +32,17 @@ const UserSchema = new mongoose.Schema(
         },
         friends: {
             type: Array,
-            default: []
+            default: [],
         },
-        location: {
-            occupation: String,
-            viewedProfile: Number,
-            impressions: Number,
+        location: String,
+        occupation: String,
+        viewedProfile: Number,
+        impressions: Number,
         },
-    }, {timestamps: true}); // timestamps will automatic dates when is created or updated 
+        {timestamps: true} // timestamps will automatic dates when is created or updated 
+        
+    ); 
+        
 
     const User = mongoose.model("User", UserSchema);
     export default User;
